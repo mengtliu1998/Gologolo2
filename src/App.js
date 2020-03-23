@@ -191,6 +191,13 @@ class App extends Component {
     return this.tps.hasTransactionToUndo();
   }
 
+  redo = () => {
+    this.tps.doTransaction();
+  }
+  canRedo = () => {
+    return this.tps.hasTransactionToRedo();
+  }
+
   // THERE ARE SEVEN FUNCTIONS FOR UPDATING THE App state, TWO OF
   // THEM CANNOT BE UNDONE AND SO DO NOT REQUIRE TRANSACTIONS:
   // addNewLogo
@@ -347,6 +354,8 @@ class App extends Component {
           undoCallback={this.undo}                        // TRANSACTION CALLBACK                       
           canUndo={this.canUndo}                          // TRANSACTION CALLBACK
 
+          redoCallback={this.redo}
+          canRedo={this.canRedo}
         />;
       default:
         return <div></div>;
