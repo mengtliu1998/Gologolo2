@@ -156,7 +156,7 @@ class App extends Component {
     };
 
     let setText =(text)=> {
-      this.text = text;
+      this.text = text
     }
 
     // NOW BUILD THE TRANSACTION OBJECT

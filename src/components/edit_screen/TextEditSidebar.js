@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Modal } from 'react-materialize';
+import { Modal } from 'react-materialize'
+import {Button} from 'react-materialize';
 
 class TextEditSidebar extends Component {
     constructor(props) {
@@ -9,6 +10,7 @@ class TextEditSidebar extends Component {
         // VALUES HERE
         this.state = {
             textColor : "#FF0000",
+            BackgroundColor : "#FFFFFF",
             fontSize : 24,
             show : false,
             textValue: this.props.logo.text,
@@ -27,9 +29,6 @@ class TextEditSidebar extends Component {
     handleEdit = () => {
         this.setState({show: true});
     }
-    handleEditClose = () =>{
-        this.setState({show:false});
-    }
 
     handleText = (event) =>{
         let trimmed = event.target.value.trim();
@@ -39,13 +38,17 @@ class TextEditSidebar extends Component {
     }
 
     handleEditEnter =(event) => {
-        this.handleEditClose();
         this.completeUserEditing();
     }
 
     handleTextColorChange = (event) => {
         console.log("handleTextColorChange to " + event.target.value);
         this.setState({ textColor: event.target.value }, this.completeUserEditing);
+    }
+
+    handleBackgroundColorChange = (event) => {
+        console.log("handleBackgroundColorChange to " + event.target.value);
+        this.setState({ BackgroundColor: event.target.value }, this.completeUserEditing);
     }
 
     handleFontSizeChange = (event) => {
@@ -73,6 +76,7 @@ class TextEditSidebar extends Component {
                 <div className="card blue-grey darken-1">
                     <div className="card-content white-text">
                     <Modal
+                            trigger={<button className="waves-effect waves-light btn-small" onClick={this.handleEdit}>&#9998;</button>}
                             bottomSheet={false}
                             fixedFooter={false}
                             header="Edit Logo"
@@ -90,13 +94,11 @@ class TextEditSidebar extends Component {
                                 preventScrolling: true,
                                 startingTop: '4%'
                             }}
-                            trigger={<button className="waves-effect waves-light btn-small" 
-                            onClick={this.handleEdit}>&#9998;</button>}
                             >
                             <div><input placeholder="Change Logo" id="edit_text" type="text" className="validate" 
                                 onChange={this.handleText} />
                                 <label></label></div>
-                                <button className={undoClass} onClick={this.handleEditEnter}>Enter</button>
+                                <Button onClick={this.handleEditEnter} flat modal = "close" node = "button" waves="green">Enter</Button>
                         </Modal>
                         <button className={undoClass} onClick={this.handleUndo}>Undo</button>
                         <button className={redoClass} onClick={this.handleDo}>Redo</button>
@@ -106,7 +108,7 @@ class TextEditSidebar extends Component {
                     <div className="card-content white-text">
                         <span className="card-title">Text</span>
                         <div className="row">
-                            <div className="col s4">Color:</div>
+                            <div className="col s4">Text Color:</div>
                             <div className="col s8">
                                 <input type="color"
                                         onChange={this.handleTextColorChange}
@@ -114,6 +116,17 @@ class TextEditSidebar extends Component {
                                 />
                             </div>
                         </div>
+
+                        <div className="row">
+                            <div className="col s4">Background Color:</div>
+                            <div className="col s8">
+                                <input type="color"
+                                        onChange={this.handleBackgroundColorChange}
+                                        value={this.props.logo.BackgroundColor}
+                                />
+                            </div>
+                        </div>
+
                         <div className="row">
                             <div className="col s4">Font Size:</div>
                             <div className="col s8">
