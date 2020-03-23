@@ -155,6 +155,10 @@ class App extends Component {
       fontSize: newFontSize
     };
 
+    let setText =(text)=> {
+      this.text = text;
+    }
+
     // NOW BUILD THE TRANSACTION OBJECT
     let transaction = new ChangeLogo_Transaction(
       this.changeLogo, oldLogo, postEditLogo);

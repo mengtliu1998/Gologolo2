@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
+import { Modal } from 'react-materialize';
 
 class TextEditSidebar extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         // WE'LL MANAGE THE UI CONTROL
         // VALUES HERE
         this.state = {
             textColor : "#FF0000",
-            fontSize : 24
+            fontSize : 24,
+            show : false,
+            textValue: this.props.logo.text,
+            placeholder: "Enter Text"
         }
     }
 
@@ -18,6 +22,25 @@ class TextEditSidebar extends Component {
 
     handleDo = () => {
         this.props.redoCallback();
+    }
+
+    handleEdit = () => {
+        this.setState({show: true});
+    }
+    handleEditClose = () =>{
+        this.setState({show:false});
+    }
+
+    handleText = (event) =>{
+        let trimmed = event.target.value.trim();
+        if(trimmed.length !== 0){
+            this.setState({textValue: event.target.value});
+        }
+    }
+
+    handleEditEnter =(event) => {
+        this.handleEditClose();
+        this.completeUserEditing();
     }
 
     handleTextColorChange = (event) => {
@@ -33,7 +56,7 @@ class TextEditSidebar extends Component {
     completeUserEditing = () => {
         console.log("completeUserEditing");
         console.log("this.state.textColor: " + this.state.textColor);
-        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.props.logo.text, this.state.textColor, this.state.fontSize);
+        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.textValue, this.state.textColor, this.state.fontSize);
     }
 
     render() {
@@ -49,7 +72,32 @@ class TextEditSidebar extends Component {
             <div className="card-panel col s4">
                 <div className="card blue-grey darken-1">
                     <div className="card-content white-text">
-                        <button className="waves-effect waves-light btn-small">&#9998;</button>
+                    <Modal
+                            bottomSheet={false}
+                            fixedFooter={false}
+                            header="Edit Logo"
+                            id="modal-0"
+                            options={{
+                                dismissible: false,
+                                endingTop: '10%',
+                                inDuration: 250,
+                                onCloseEnd: null,
+                                onCloseStart: null,
+                                onOpenEnd: null,
+                                onOpenStart: null,
+                                opacity: 0.5,
+                                outDuration: 250,
+                                preventScrolling: true,
+                                startingTop: '4%'
+                            }}
+                            trigger={<button className="waves-effect waves-light btn-small" 
+                            onClick={this.handleEdit}>&#9998;</button>}
+                            >
+                            <div><input placeholder="Change Logo" id="edit_text" type="text" className="validate" 
+                                onChange={this.handleText} />
+                                <label></label></div>
+                                <button className={undoClass} onClick={this.handleEditEnter}>Enter</button>
+                        </Modal>
                         <button className={undoClass} onClick={this.handleUndo}>Undo</button>
                         <button className={redoClass} onClick={this.handleDo}>Redo</button>
                     </div>
