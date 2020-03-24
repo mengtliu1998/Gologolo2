@@ -23,7 +23,13 @@ export const TransactionType = {
 export const LogoDefaults = {
   TEXT : "goLogoLo Logo",
   TEXT_COLOR : "#FF0000",
-  FONT_SIZE : 24
+  FONT_SIZE : 24,
+  BACKGROUNDCOLOR: "#FFFFFF",
+  MARGIN: 10,
+  PADDING: 10,
+  BORDERCOLOR: "#FFF000",
+  BORDERTHICKNESS: 5,
+  BORDERRADIUS: 10
 }
 
 // App IS THE ROOT REACT COMPONENT
@@ -145,14 +151,20 @@ class App extends Component {
    * to do the actual work of changing the logo. Note that this function will also
    * then add the built transaction to the stack and execute it.
    */
-  buildChangeLogoTransaction = (oldLogo, logoKey, newText, newTextColor, newFontSize) => {
+  buildChangeLogoTransaction = (oldLogo, logoKey, newText, newTextColor, newFontSize, newBackgroundColor, newMargin, newRadius, newPadding, newBorderColor, newThickness) => {
     // THIS WILL BE THE LOGO AFTER THE CHANGE HAPPENS, NOTE WE BUILD
     // AN ENTIRELY NEW LOGO EACH TIME BUT IT SHOULD KEEP THE SAME KEY
     let postEditLogo = {
       key: logoKey,
       text: newText,
       textColor: newTextColor,
-      fontSize: newFontSize
+      fontSize: newFontSize,
+      backgroundColor: newBackgroundColor,
+      margin: newMargin,
+      borderRadius: newRadius,
+      padding: newPadding,
+      borderColor: newBorderColor,
+      borderThickenss: newThickness
     };
 
     let setText =(text)=> {
@@ -232,7 +244,13 @@ class App extends Component {
       key: this.getHighKey(this.state.logos),
       text: LogoDefaults.TEXT,
       textColor: LogoDefaults.TEXT_COLOR,
-      fontSize: LogoDefaults.FONT_SIZE
+      fontSize: LogoDefaults.FONT_SIZE,
+      padding: LogoDefaults.PADDING,
+      margin: LogoDefaults.MARGIN,
+      borderRadius: LogoDefaults.BORDERRADIUS,
+      borderColor: LogoDefaults.BORDERCOLOR,
+      borderThickenss: LogoDefaults.BORDERTHICKNESS,
+      backgroundColor: LogoDefaults.BACKGROUNDCOLOR
     }
     return newLogo;
   }

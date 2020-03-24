@@ -10,11 +10,16 @@ class TextEditSidebar extends Component {
         // VALUES HERE
         this.state = {
             textColor : "#FF0000",
-            BackgroundColor : "#FFFFFF",
+            backgroundColor : this.props.logo.backgroundColor,
             fontSize : 24,
             show : false,
             textValue: this.props.logo.text,
-            placeholder: "Enter Text"
+            //placeholder: "Enter Text"
+            borderColor: this.props.logo.borderColor,
+            borderRadius: this.props.logo.borderRadius,
+            borderThickness: this.props.logo.borderThickness,
+            margin: this.props.logo.margin,
+            padding: this.props.logo.padding
         }
     }
 
@@ -48,7 +53,32 @@ class TextEditSidebar extends Component {
 
     handleBackgroundColorChange = (event) => {
         console.log("handleBackgroundColorChange to " + event.target.value);
-        this.setState({ BackgroundColor: event.target.value }, this.completeUserEditing);
+        this.setState({ backgroundColor: event.target.value }, this.completeUserEditing);
+    }
+
+    handleMarginChange = (event) => {
+        console.log("handleMarginChangeComplete to " + event.target.value);
+        this.setState({ margin: event.target.value }, this.completeUserEditing);
+    }
+
+    handlePaddingChange = (event) => {
+        console.log("handleTextColorChangeComplete to " + event.target.value);
+        this.setState({ padding: event.target.value }, this.completeUserEditing);
+    }
+
+    handleRadiusChange = (event) => {
+        console.log("handleTextColorChangeComplete to " + event.target.value);
+        this.setState({ borderRadius: event.target.value }, this.completeUserEditing);
+    }
+
+    handleThicknessChange = (event) => {
+        console.log("handleTextColorChangeComplete to " + event.target.value);
+        this.setState({ borderThickness: event.target.value }, this.completeUserEditing);
+    }
+
+    handleBorderColorChange = (event) => {
+        console.log("handleTextColorChangeComplete to " + event.target.value);
+        this.setState({ borderColor: event.target.value }, this.completeUserEditing);
     }
 
     handleFontSizeChange = (event) => {
@@ -59,9 +89,12 @@ class TextEditSidebar extends Component {
     completeUserEditing = () => {
         console.log("completeUserEditing");
         console.log("this.state.textColor: " + this.state.textColor);
-        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.textValue, this.state.textColor, this.state.fontSize);
+        this.props.changeLogoCallback(this.props.logo, this.props.logo.key, this.state.textValue, this.state.textColor, this.state.fontSize,
+                                        this.state.backgroundColor, this.state.margin, this.state.borderRadius, this.state.padding,
+                                        this.state.borderColor, this.state.borderThickness);
     }
 
+    //oldLogo, logoKey, newText, newTextColor, newFontSize, newBackgroundColor, newMargin, newRadius, newPadding, newBorderColor, newThickness
     render() {
         let undoDisabled = !this.props.canUndo();
         let undoClass = "waves-effect waves-light btn-small";
@@ -128,11 +161,57 @@ class TextEditSidebar extends Component {
                         </div>
 
                         <div className="row">
+                            <div className="col s4">Border Color:</div>
+                            <div className="col s8">
+                                <input type="color"
+                                        onChange={this.handleBorderColorChange}
+                                        value={this.props.logo.borderColor}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="row">
                             <div className="col s4">Font Size:</div>
                             <div className="col s8">
                                 <input type="range" min="4" max="144" 
                                     onChange={this.handleFontSizeChange}
                                     value={this.props.logo.fontSize} />
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col s4">Padding:</div>
+                            <div className="col s8">
+                                <input type="range" min="4" max="144" 
+                                    onChange={this.handlePaddingChange}
+                                    value={this.props.logo.padding} />
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col s4">Margin:</div>
+                            <div className="col s8">
+                                <input type="range" min="4" max="144" 
+                                    onChange={this.handleMarginChange}
+                                    value={this.props.logo.margin} />
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col s4">Border Radius:</div>
+                            <div className="col s8">
+                                <input type="range" min="4" max="144" 
+                                    onChange={this.handleRadiusChange}
+                                    value={this.props.logo.borderRadius} />
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col s4">Border Thickness:</div>
+                            <div className="col s8">
+                                <input type="range" min="4" max="144" 
+                                    onChange={this.handleThicknessChange}
+                                    value={this.props.logo.borderThickness} />
                             </div>
                         </div>
                     </div>
