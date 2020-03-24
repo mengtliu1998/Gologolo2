@@ -268,7 +268,7 @@ class App extends Component {
     );
 
     console.log("size of nextLogos: " + nextLogos.length);
-
+    
     // AND SET THE STATE, WHICH SHOULD FORCE A render
     this.setState({
       logos: nextLogos

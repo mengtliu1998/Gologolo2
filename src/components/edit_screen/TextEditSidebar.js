@@ -93,6 +93,19 @@ class TextEditSidebar extends Component {
                                         this.state.borderColor, this.state.borderWidth);
     }
 
+    keydownHandler =(event)=> {
+        if (event.keyCode == 90 && event.ctrlKey) {
+            this.handleUndo();
+        }
+        else if (event.keyCode == 89 && event.ctrlKey) {
+            this.handleDo();
+        }
+    }
+
+    componentDidMount(){
+        document.addEventListener('keydown', this.keydownHandler);
+    }
+    
     render() {
         let undoDisabled = !this.props.canUndo();
         let undoClass = "waves-effect waves-light btn-small";
@@ -102,6 +115,11 @@ class TextEditSidebar extends Component {
             redoClass += " disabled";
         if (redoDisabled)
             redoClass += " disabled";
+        var fontS = this.state.fontSize;
+        var marg = this.state.margin;
+        var pad = this.state.padding;
+        var rad = this.state.borderRadius;
+        var thickn = this.state.borderWidth
         return (
             <div className="card-panel col s4">
                 <div className="card blue-grey darken-1">
@@ -169,7 +187,7 @@ class TextEditSidebar extends Component {
                         </div>
 
                         <div className="row">
-                            <div className="col s4">Font Size:</div>
+                            <div className="col s4">Font Size: {fontS}</div>
                             <div className="col s8">
                                 <input type="range" min="4" max="144" 
                                     onChange={this.handleFontSizeChange}
@@ -178,7 +196,7 @@ class TextEditSidebar extends Component {
                         </div>
 
                         <div className="row">
-                            <div className="col s4">Padding:</div>
+                            <div className="col s4">Padding: {pad}</div>
                             <div className="col s8">
                                 <input type="range" min="4" max="144" 
                                     onChange={this.handlePaddingChange}
@@ -187,7 +205,7 @@ class TextEditSidebar extends Component {
                         </div>
 
                         <div className="row">
-                            <div className="col s4">Margin:</div>
+                            <div className="col s4">Margin: {marg}</div>
                             <div className="col s8">
                                 <input type="range" min="4" max="144" 
                                     onChange={this.handleMarginChange}
@@ -196,7 +214,7 @@ class TextEditSidebar extends Component {
                         </div>
 
                         <div className="row">
-                            <div className="col s4">Border Radius:</div>
+                            <div className="col s4">Border Radius: {rad}</div>
                             <div className="col s8">
                                 <input type="range" min="4" max="144" 
                                     onChange={this.handleRadiusChange}
@@ -205,7 +223,7 @@ class TextEditSidebar extends Component {
                         </div>
 
                         <div className="row">
-                            <div className="col s4">Border Thickness:</div>
+                            <div className="col s4">Border Thickness: {thickn}</div>
                             <div className="col s8">
                                 <input type="range" min="4" max="144" 
                                     onChange={this.handleWidthChange}
