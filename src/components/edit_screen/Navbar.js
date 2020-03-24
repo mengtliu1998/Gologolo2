@@ -54,8 +54,8 @@ class Navbar extends React.Component {
           outDuration: 250,
           preventScrolling: true,
           startingTop: '4%'
-          }}> <div style={{ display: "flex"}}>
-            <Button onClick={this.handleConfirm} flat modal = "close" node = "button" waves="green" style={{ marginLeft: "auto"}}>Confirm</Button></div>
+          }}> <div className="waves-effect waves-light btn-small">
+            <Button onClick={this.handleConfirm} flat modal = "close" node = "button" waves="green">Confirm</Button></div>
         </Modal>
         </div>
       </nav>

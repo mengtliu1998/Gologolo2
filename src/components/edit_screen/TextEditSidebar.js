@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-materialize'
+import { Range } from 'react-materialize'
 import {Button} from 'react-materialize';
 
 class TextEditSidebar extends Component {
@@ -189,7 +190,10 @@ class TextEditSidebar extends Component {
                         <div className="row">
                             <div className="col s4">Font Size: {fontS}</div>
                             <div className="col s8">
-                                <input type="range" min="4" max="144" 
+                                <Range
+                                    max="144"
+                                    min="4"
+                                    name="points"
                                     onChange={this.handleFontSizeChange}
                                     value={this.props.logo.fontSize} />
                             </div>
@@ -198,7 +202,10 @@ class TextEditSidebar extends Component {
                         <div className="row">
                             <div className="col s4">Padding: {pad}</div>
                             <div className="col s8">
-                                <input type="range" min="4" max="144" 
+                                <Range
+                                    max="144"
+                                    min="4"
+                                    name="points" 
                                     onChange={this.handlePaddingChange}
                                     value={this.props.logo.padding} />
                             </div>
@@ -207,7 +214,10 @@ class TextEditSidebar extends Component {
                         <div className="row">
                             <div className="col s4">Margin: {marg}</div>
                             <div className="col s8">
-                                <input type="range" min="4" max="144" 
+                                <Range
+                                    max="144"
+                                    min="4"
+                                    name="points"
                                     onChange={this.handleMarginChange}
                                     value={this.props.logo.margin} />
                             </div>
@@ -216,7 +226,10 @@ class TextEditSidebar extends Component {
                         <div className="row">
                             <div className="col s4">Border Radius: {rad}</div>
                             <div className="col s8">
-                                <input type="range" min="4" max="144" 
+                                <Range
+                                    max="144"
+                                    min="4"
+                                    name="points" 
                                     onChange={this.handleRadiusChange}
                                     value={this.props.logo.borderRadius} />
                             </div>
@@ -225,7 +238,10 @@ class TextEditSidebar extends Component {
                         <div className="row">
                             <div className="col s4">Border Thickness: {thickn}</div>
                             <div className="col s8">
-                                <input type="range" min="4" max="144" 
+                                <Range
+                                    max="144"
+                                    min="4"
+                                    name="points"
                                     onChange={this.handleWidthChange}
                                     value={this.props.logo.borderWidth} />
                             </div>
