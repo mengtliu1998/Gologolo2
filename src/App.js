@@ -24,11 +24,11 @@ export const LogoDefaults = {
   TEXT : "goLogoLo Logo",
   TEXT_COLOR : "#FF0000",
   FONT_SIZE : 24,
-  BACKGROUNDCOLOR: "#FFFFFF",
+  BACKGROUNDCOLOR: "#FFF000",
   MARGIN: 10,
   PADDING: 10,
-  BORDERCOLOR: "#FFF000",
-  BORDERTHICKNESS: 5,
+  BORDERCOLOR: "#FFFF00",
+  BORDERWIDTH: 5,
   BORDERRADIUS: 10
 }
 
@@ -151,7 +151,7 @@ class App extends Component {
    * to do the actual work of changing the logo. Note that this function will also
    * then add the built transaction to the stack and execute it.
    */
-  buildChangeLogoTransaction = (oldLogo, logoKey, newText, newTextColor, newFontSize, newBackgroundColor, newMargin, newRadius, newPadding, newBorderColor, newThickness) => {
+  buildChangeLogoTransaction = (oldLogo, logoKey, newText, newTextColor, newFontSize, newBackgroundColor, newMargin, newRadius, newPadding, newBorderColor, newWidth) => {
     // THIS WILL BE THE LOGO AFTER THE CHANGE HAPPENS, NOTE WE BUILD
     // AN ENTIRELY NEW LOGO EACH TIME BUT IT SHOULD KEEP THE SAME KEY
     let postEditLogo = {
@@ -164,7 +164,7 @@ class App extends Component {
       borderRadius: newRadius,
       padding: newPadding,
       borderColor: newBorderColor,
-      borderThickenss: newThickness
+      borderWidth: newWidth
     };
 
     let setText =(text)=> {
@@ -249,7 +249,7 @@ class App extends Component {
       margin: LogoDefaults.MARGIN,
       borderRadius: LogoDefaults.BORDERRADIUS,
       borderColor: LogoDefaults.BORDERCOLOR,
-      borderThickenss: LogoDefaults.BORDERTHICKNESS,
+      borderWidth: LogoDefaults.BORDERWIDTH,
       backgroundColor: LogoDefaults.BACKGROUNDCOLOR
     }
     return newLogo;
@@ -336,6 +336,12 @@ class App extends Component {
     text += "\ttext: " + logoToDisplay.text + "\n";
     text += "\ttextColor: " + logoToDisplay.textColor + "\n";
     text += "\tfontSize: " + logoToDisplay.fontSize + "\n";
+    text += "\tbackgroundColor: " + logoToDisplay.backgroundColor + "\n";
+    text += "\tborderRadius: " + logoToDisplay.borderRadius + "\n";
+    text += "\tborderWidth: " + logoToDisplay.borderWidth + "\n";
+    text += "\tmargin: " + logoToDisplay.margin + "\n";
+    text += "\tpadding: " + logoToDisplay.padding + "\n";
+    text += "\tborderColor: " + logoToDisplay.borderColor + "\n";
     text += "}";
     return text;
   }
