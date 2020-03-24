@@ -80,6 +80,7 @@ export class jsTPS {
             transaction.undoTransaction();
             this.mostRecentTransaction--;
             this.performingUndo = false;
+            console.log(this.mostRecentTransaction);
         }
     }
 

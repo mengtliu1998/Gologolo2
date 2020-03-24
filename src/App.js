@@ -5,11 +5,13 @@ import HomeScreen from './components/home_screen/HomeScreen'
 import EditScreen from './components/edit_screen/EditScreen'
 import jsTPS from './transactions/jsTPS.js'
 import ChangeLogo_Transaction from './transactions/ChangeLogo_Transaction.js'
+import Navbar from './components/edit_screen/Navbar';
 
 // THESE ARE THE App SCREENS
 const AppScreen = {
   HOME_SCREEN: "HOME_SCREEN",
-  EDIT_SCREEN: "EDIT_SCREEN"
+  EDIT_SCREEN: "EDIT_SCREEN",
+  NAV_BAR: "NAV_BAR"
 }
 
 // THESE ARE THE VARIOUS TRANSACTION TYPES
@@ -189,6 +191,10 @@ class App extends Component {
     this.tps.undoTransaction();
   }
 
+  redo = () => {
+    this.tps.doTransaction();
+  }
+
   /**
    * resetTransactions - This method clears all the transactions in
    * the undo/redo stack, which should be done every time the logo
@@ -207,9 +213,6 @@ class App extends Component {
     return this.tps.hasTransactionToUndo();
   }
 
-  redo = () => {
-    this.tps.doTransaction();
-  }
   canRedo = () => {
     return this.tps.hasTransactionToRedo();
   }
@@ -270,6 +273,12 @@ class App extends Component {
     this.setState({
       logos: nextLogos
     }, this.afterLogoDeleted);
+  }
+
+  removeLogo =()=>{
+    console.log("logo gone");
+    this.deleteLogo(this.state.currentLogo.key);
+    this.afterLogoDeleted();
   }
 
   // THIS CHANGES THE LOGO
@@ -384,6 +393,8 @@ class App extends Component {
 
           redoCallback={this.redo}
           canRedo={this.canRedo}
+
+          removeLogo={this.removeLogo}
         />;
       default:
         return <div></div>;
