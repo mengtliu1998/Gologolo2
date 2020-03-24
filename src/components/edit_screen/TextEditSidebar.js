@@ -105,14 +105,14 @@ class TextEditSidebar extends Component {
     componentDidMount(){
         document.addEventListener('keydown', this.keydownHandler);
     }
-    
+
     render() {
         let undoDisabled = !this.props.canUndo();
-        let undoClass = "waves-effect waves-light btn-small";
         let redoDisabled = !this.props.canRedo();
+        let undoClass = "waves-effect waves-light btn-small";
         let redoClass = "waves-effect waves-light btn-small";
         if (undoDisabled)
-            redoClass += " disabled";
+            undoClass += " disabled";
         if (redoDisabled)
             redoClass += " disabled";
         var fontS = this.state.fontSize;

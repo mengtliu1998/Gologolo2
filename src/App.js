@@ -278,7 +278,6 @@ class App extends Component {
   removeLogo =()=>{
     console.log("logo gone");
     this.deleteLogo(this.state.currentLogo.key);
-    this.afterLogoDeleted();
   }
 
   // THIS CHANGES THE LOGO
