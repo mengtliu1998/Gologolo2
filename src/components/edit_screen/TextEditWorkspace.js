@@ -18,9 +18,15 @@ class TextEditWorkspace extends Component {
             }
         }
         return (
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+            }}>
             <div className="col s8"
-                style={ styles.container }>
-                {this.props.logo.text}
+            style={ styles.container }>
+               
+            {this.props.logo.text}</div>
             </div>
         )
     }
